@@ -1,5 +1,5 @@
-import { put, takeEvery, all, delay, select } from 'redux-saga/effects';
-import io from 'socket.io-client';
+import { put, takeEvery, all, select, call, take } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
 import axios from 'axios';
 
 import {
@@ -15,23 +15,15 @@ import {
   setNewData,
 } from '../actions/chart';
 
-let i = 14;
+export function* setAuthorizedSaga({ payload }) {
+  if (payload) {
+    yield localStorage.setItem('authorized', String(payload));
 
-const getNewId = () => {
-  i++;
+    return;
+  }
 
-  return i;
-};
-
-export const loadSaga = () => {
-  // console.log('Sagas!')
-
-  const socket = io('ws://localhost:8080', {
-    path: '/chart'
-  });
-
-  socket.on("message", (msg) => console.log(msg, ' !!!'));
-};
+  yield localStorage.removeItem('authorized');
+}
 
 export function* loginSaga() {
   const { login, password } = yield select((store) => store.loginReducer);
@@ -55,33 +47,48 @@ export function* loginSaga() {
 }
 
 export function* watchLogin() {
-  yield takeEvery(signIn, loginSaga)
+  yield takeEvery(setAuthorized, setAuthorizedSaga);
+  yield takeEvery(signIn, loginSaga);
 }
 
-function getRandomArbitrary(min, max) {
-  return Math.random() * (max - min) + min;
-}
+const websocketChartInitChannel = () => eventChannel(emitter => {
+  const chartSocket = new WebSocket("ws://localhost:8080/chart");
 
-export function* chartDataSaga() {
-  yield delay(1200);
+  chartSocket.onmessage = (event) => {
+    let parsedData;
 
-  yield put(setNewData({
-    name: getNewId(),
-    uv: getRandomArbitrary(1000, 4000),
-    pv: getRandomArbitrary(6000, 10000),
-    amt: getRandomArbitrary(2000, 3000),
-  }));
+    try {
+      parsedData = JSON.parse(event.data);
+    } catch (err) {
+      console.log('parse JSON error');
+    }
 
-  yield put(setData());
+    if (parsedData) {
+      emitter(setNewData(parsedData));
+    }
+  };
+
+  return () => {
+    console.log('socket off')
+  }
+});
+
+export function* chartSaga() {
+  const channel = yield call(websocketChartInitChannel);
+
+  while (true) {
+    const action = yield take(channel);
+    yield put(action);
+  }
 }
 
 export function* watchChart() {
-  yield takeEvery(setData, chartDataSaga)
+  yield takeEvery(setData, chartSaga)
 }
 
 export default function* rootSaga() {
   yield all([
-    loadSaga(),
+    // loadSaga(),
     watchLogin(),
     watchChart(),
   ])
