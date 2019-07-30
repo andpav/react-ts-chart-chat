@@ -4,13 +4,14 @@ import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
 import rootReducer from '../reducers/index';
 import rootSaga from '../sagas';
+import socketMiddleWare from '../middlewares/socket';
 
 const sagaMiddleware = createSagaMiddleware();
 export const history = createHistory();
 
 const initialState = {};
 const enhancers = [];
-const middleware = [sagaMiddleware, routerMiddleware(history)];
+const middleware = [sagaMiddleware, routerMiddleware(history), socketMiddleWare];
 
 if (process.env.NODE_ENV === 'development') {
   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;

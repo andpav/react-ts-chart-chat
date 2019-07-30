@@ -3,7 +3,7 @@ import * as actions from '../actions/login';
 
 const initialState = {
   authorized: Boolean(localStorage.getItem('authorized')),
-  login: '',
+  login: localStorage.getItem('login') || '',
   password: '',
   error: false,
 };

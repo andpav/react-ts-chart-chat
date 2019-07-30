@@ -6,18 +6,20 @@ import { connect } from 'react-redux'
 const Main = props => (
   <div>
     <h1>Main</h1>
-    <p>
-      <button onClick={() => props.changePage()}>
+      <button onClick={() => props.goToChart()}>
         Go to chart
       </button>
-    </p>
+      <button onClick={() => props.goToChat()}>
+        Go to chat
+      </button>
   </div>
 );
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      changePage: () => push('/chart'),
+      goToChart: () => push('/chart'),
+      goToChat: () => push('/chat'),
     },
     dispatch,
   );

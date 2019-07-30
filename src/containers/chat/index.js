@@ -10,7 +10,8 @@ import {
 import {
   setText,
   sendMessage,
-  setConnection,
+  setChatConnection,
+  setError,
 } from '../../actions/chat';
 
 class Chat extends Component {
@@ -23,7 +24,7 @@ class Chat extends Component {
       return;
     }
 
-    this.props.setConnection();
+    this.props.setChatConnection();
   }
 
   componentDidUpdate() {
@@ -50,6 +51,7 @@ class Chat extends Component {
         </div>))}
 
         <p>Your message:</p><input onChange={(e) => this.setText(e)} value={this.props.text} />
+        {this.props.error && <p>Something went wrong</p>}
 
         <button
           onClick={() => this.props.sendMessage()}
@@ -67,6 +69,7 @@ const mapStateToProps = state => ({
   authorized: state.loginReducer.authorized,
   messages: state.chatReducer.messages,
   text: state.chatReducer.text,
+  error: state.chatReducer.error,
 });
 
 const mapDispatchToProps = dispatch =>
@@ -74,7 +77,8 @@ const mapDispatchToProps = dispatch =>
       setAuthorized,
       sendMessage,
       setText,
-      setConnection,
+      setChatConnection,
+      setError,
       changePage: () => push('/login'),
     },
     dispatch,

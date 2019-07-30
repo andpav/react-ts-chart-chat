@@ -1,5 +1,4 @@
-import { put, takeEvery, all, select, call, take } from 'redux-saga/effects';
-import { eventChannel } from 'redux-saga';
+import { put, takeEvery, all, select } from 'redux-saga/effects';
 import axios from 'axios';
 
 import {
@@ -8,18 +7,18 @@ import {
   setLogin,
   setPassword,
   setError,
+  removeConnections,
 } from '../actions/login';
 
 import {
-  setData,
-  setNewData,
-} from '../actions/chart';
+  sendMessage,
+  sendMessageToSocket,
+  reset as resetChat,
+} from '../actions/chat';
 
 import {
-  setConnection,
-  setMessage,
-  sendMessage,
-} from '../actions/chat';
+  reset as resetChart,
+} from '../actions/chart';
 
 export function* setAuthorizedSaga({ payload }) {
   if (payload) {
@@ -28,7 +27,11 @@ export function* setAuthorizedSaga({ payload }) {
     return;
   }
 
+  yield put(removeConnections());
+  yield put(resetChat());
+  yield put(resetChart());
   yield localStorage.removeItem('authorized');
+  yield localStorage.removeItem('login');
 }
 
 export function* loginSaga() {
@@ -46,6 +49,7 @@ export function* loginSaga() {
 
     yield put(setAuthorized(true));
     yield put(setLogin(''));
+    yield localStorage.setItem('login', login);
     yield put(setPassword(''));
   } catch(error) {
     yield put(setError(true));
@@ -57,63 +61,20 @@ export function* watchLogin() {
   yield takeEvery(signIn, loginSaga);
 }
 
-const websocketInitChannel = (url, callback) => eventChannel(emitter => {
-  const socket = new WebSocket(url);
-
-  socket.onmessage = (event) => {
-    let parsedData;
-
-    try {
-      parsedData = JSON.parse(event.data);
-    } catch (err) {
-      console.log('parse JSON error');
-    }
-
-    if (parsedData) {
-      emitter(callback(parsedData));
-    }
-  };
-
-  return () => {
-    console.log('socket off')
-  }
-});
-
-export function* chartSaga() {
-  const channel = yield call(websocketInitChannel, 'ws://localhost:8080/chart', setNewData);
-
-  while (true) {
-    const action = yield take(channel);
-    yield put(action);
-  }
-}
-
-export function* watchChart() {
-  yield takeEvery(setData, chartSaga)
-}
-
-export function* setConnectionSaga() {
-  const channel = yield call(websocketInitChannel, 'ws://localhost:8080/chat', setMessage);
-
-  while (true) {
-    const action = yield take(channel);
-    yield put(action);
-  }
-}
-
 export function* sendMessageSaga() {
+  const name = yield select(state => state.loginReducer.login);
+  const text = yield select(state => state.chatReducer.text);
+
+  yield put(sendMessageToSocket({ name, text }));
 }
 
 export function* watchChat() {
-  yield takeEvery(setConnection, setConnectionSaga)
   yield takeEvery(sendMessage, sendMessageSaga)
 }
 
 export default function* rootSaga() {
   yield all([
-    // loadSaga(),
     watchLogin(),
-    watchChart(),
     watchChat(),
   ])
 }

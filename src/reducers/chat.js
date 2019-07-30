@@ -1,9 +1,10 @@
 import { handleActions } from 'redux-actions';
-import { setText, setMessage } from '../actions/chat';
+import { setText, setMessage, setError, reset } from '../actions/chat';
 
 const initialState = {
   messages: [],
   text: '',
+  error: '',
 };
 
 export default handleActions(
@@ -13,5 +14,11 @@ export default handleActions(
     },
     [setMessage]: (state, { payload }) => {
       return { ...state, messages: [...state.messages, payload]};
+    },
+    [setError]: (state, { payload }) => {
+      return { ...state, error: Boolean(payload)};
+    },
+    [reset]: (state) => {
+      return initialState;
     },
   }, initialState);

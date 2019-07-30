@@ -10,7 +10,7 @@ import {
 } from '../../actions/login';
 
 import {
-  setData,
+  setChartConnection,
 } from '../../actions/chart';
 
 class Chart extends Component {
@@ -23,7 +23,7 @@ class Chart extends Component {
       return;
     }
 
-    this.props.setData();
+    this.props.setChartConnection();
   }
 
   componentDidUpdate() {
@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
       setAuthorized,
-      setData,
+      setChartConnection,
       changePage: () => push('/login'),
     },
     dispatch,
