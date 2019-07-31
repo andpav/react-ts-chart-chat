@@ -45,7 +45,7 @@ class Chat extends Component {
   };
 
   render() {
-    const login = this.props.login;
+    const { login } = this.props;
 
     return (
       <div className="chat-page">
@@ -53,12 +53,13 @@ class Chat extends Component {
 
         <div
           className="chat"
+          // eslint-disable-next-line arrow-parens
           ref={el => { this.chat = el; }}
         >
           {this.props.messages.map(message => (
             <div className="chat__message">
-              <span className={`chat__name ${login === message.name ? "chat__name_right" : "chat__name_left"}`}>{message.name}</span>
-              <span className={`chat__text ${login === message.name ? "chat__text_right" : "chat__text_left"}`}>{message.text}</span>
+              <span className={`chat__name ${login === message.name ? 'chat__name_right' : 'chat__name_left'}`}>{message.name}</span>
+              <span className={`chat__text ${login === message.name ? 'chat__text_right' : 'chat__text_left'}`}>{message.text}</span>
             </div>
           ))}
         </div>
@@ -66,19 +67,22 @@ class Chat extends Component {
         <p>Your message:</p>
         <input
           className="chat-page__input"
-          onChange={(e) => this.setText(e)}
+          onChange={e => this.setText(e)}
           value={this.props.text}
         />
 
         <div className="chat-page__button-wrapper">
           <button
+            type="button"
             className="chat-page__button"
             onClick={() => this.props.sendMessage()}
-          >Send</button>
+          >
+            Send
+          </button>
           {this.props.error && <p className="login-page__error">Something went wrong</p>}
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -90,18 +94,16 @@ const mapStateToProps = state => ({
   error: state.chatReducer.error,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({
-      sendMessage,
-      setText,
-      setChatConnection,
-      setError,
-      changePage: () => push('/login'),
-    },
-    dispatch,
-  );
+const mapDispatchToProps = dispatch => bindActionCreators({
+  sendMessage,
+  setText,
+  setChatConnection,
+  setError,
+  changePage: () => push('/login'),
+},
+dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(Chat)
+  mapDispatchToProps,
+)(Chat);

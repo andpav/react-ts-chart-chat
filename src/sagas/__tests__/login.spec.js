@@ -1,5 +1,5 @@
-import { setAuthorizedSaga, loginSaga } from '../login';
 import { expectSaga } from 'redux-saga-test-plan';
+import { setAuthorizedSaga, loginSaga } from '../login';
 
 import { removeConnections, setError } from '../../actions/login';
 import { reset as resetChat } from '../../actions/chat';
@@ -24,39 +24,29 @@ describe('Login sagas', () => {
     };
   });
 
-  it('set authorized saga login case', () => {
-    return expectSaga(setAuthorizedSaga, true)
-      .withState(storeState)
+  it('set authorized saga login case', () => expectSaga(setAuthorizedSaga, true)
+    .withState(storeState)
 
-      .run();
-  });
+    .run());
 
-  it('set authorized saga logout case', () => {
-    return expectSaga(setAuthorizedSaga, false)
-      .withState(storeState)
+  it('set authorized saga logout case', () => expectSaga(setAuthorizedSaga, false)
+    .withState(storeState)
 
-      .put(removeConnections())
-      .put(resetChat())
-      .put(resetChart())
+    .put(removeConnections())
+    .put(resetChat())
+    .put(resetChart())
 
-      .run();
-  });
+    .run());
 
-  it('login saga success case', () => {
-    return expectSaga(loginSaga)
-      .withState(storeState)
+  it('login saga success case', () => expectSaga(loginSaga)
+    .withState(storeState)
 
-      // TODO: test with mock axios.post
+  // TODO: test with mock axios.post
 
-      .run();
-  });
+    .run());
 
-  it('login saga error case', () => {
-    return expectSaga(loginSaga)
-      .withState(storeState)
-
-      .put(setError(true))
-
-      .run();
-  });
+  it('login saga error case', () => expectSaga(loginSaga)
+    .withState(storeState)
+    .put(setError(true))
+    .run());
 });

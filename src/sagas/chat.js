@@ -17,5 +17,5 @@ export function* sendMessageSaga() {
 }
 
 export default function* watchChat() {
-  yield takeEvery(sendMessage, sendMessageSaga)
+  yield takeEvery(sendMessage, sendMessageSaga);
 }

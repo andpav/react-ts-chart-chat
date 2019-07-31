@@ -14,6 +14,7 @@ const enhancers = [];
 const middleware = [sagaMiddleware, routerMiddleware(history), socketMiddleWare];
 
 if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line no-underscore-dangle
   const devToolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__;
 
   if (typeof devToolsExtension === 'function') {
@@ -27,9 +28,9 @@ const composedEnhancers = compose(
 );
 
 export default createStore(
-    rootReducer(history),
-    initialState,
-    composedEnhancers,
+  rootReducer(history),
+  initialState,
+  composedEnhancers,
 );
 
 sagaMiddleware.run(rootSaga);

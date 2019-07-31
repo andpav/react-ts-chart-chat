@@ -1,9 +1,9 @@
-import React from 'react'
-import { Route, Link } from 'react-router-dom'
-import Chart from '../chart'
-import Chat from '../chat'
-import Login from '../login'
-import Home from '../home'
+import React from 'react';
+import { Route, Link } from 'react-router-dom';
+import Chart from '../chart';
+import Chat from '../chat';
+import Login from '../login';
+import Home from '../home';
 
 import './app.css';
 
@@ -25,4 +25,4 @@ const App = () => (
   </div>
 );
 
-export default App
+export default App;

@@ -17,7 +17,7 @@ describe('Chat reducer', () => {
 
   it('validate messages', () => {
     const data = { name: '123', text: '456' };
-    const newState = Object.assign({}, initialState, { messages: [ data ]});
+    const newState = Object.assign({}, initialState, { messages: [data] });
 
     expect(chatReducer(initialState, actionList.setMessage(data))).toEqual(newState);
 
@@ -26,7 +26,7 @@ describe('Chat reducer', () => {
 
   it('validate error', () => {
     const data = true;
-    const newState = Object.assign({}, initialState, { error: data});
+    const newState = Object.assign({}, initialState, { error: data });
 
     expect(chatReducer(initialState, actionList.setError(data))).toEqual(newState);
   });

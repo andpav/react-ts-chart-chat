@@ -33,22 +33,21 @@ export function* setAuthorizedSaga({ payload }) {
 }
 
 export function* loginSaga() {
-  const { login, password } = yield select((store) => store.loginReducer);
+  const { login, password } = yield select(store => store.loginReducer);
 
   try {
     yield axios.post('http://localhost:8080/login',
       JSON.stringify({ login, password }),
       {
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        }
-      }
-    );
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
 
     yield put(setAuthorized(true));
     yield localStorage.setItem('login', login);
     yield put(setPassword(''));
-  } catch(error) {
+  } catch (error) {
     yield put(setError(true));
   }
 }

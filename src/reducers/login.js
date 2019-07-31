@@ -10,16 +10,9 @@ export const initialState = {
 
 export default handleActions(
   {
-    [actions.setAuthorized]: (state, { payload }) => {
-      return { ...state, authorized: payload };
-    },
-    [actions.setLogin]: (state, { payload }) => {
-      return { ...state, login: payload };
-    },
-    [actions.setPassword]: (state, { payload }) => {
-      return { ...state, password: payload };
-    },
-    [actions.setError]: (state, { payload }) => {
-      return { ...state, error: payload };
-    },
-  }, initialState);
+    [actions.setAuthorized]: (state, { payload }) => ({ ...state, authorized: payload }),
+    [actions.setLogin]: (state, { payload }) => ({ ...state, login: payload }),
+    [actions.setPassword]: (state, { payload }) => ({ ...state, password: payload }),
+    [actions.setError]: (state, { payload }) => ({ ...state, error: payload }),
+  }, initialState,
+);

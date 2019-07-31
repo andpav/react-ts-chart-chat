@@ -20,4 +20,5 @@ export default handleActions(
       return { ...state, data };
     },
     [reset]: () => initialState,
-  }, initialState);
+  }, initialState,
+);

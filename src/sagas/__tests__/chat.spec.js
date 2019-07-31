@@ -1,5 +1,5 @@
-import { sendMessageSaga } from '../chat';
 import { expectSaga } from 'redux-saga-test-plan';
+import { sendMessageSaga } from '../chat';
 
 import { sendMessageToSocket, setText } from '../../actions/chat';
 
@@ -22,12 +22,9 @@ describe('Login sagas', () => {
     };
   });
 
-  it('set authorized saga without text case', () => {
-    return expectSaga(sendMessageSaga)
-      .withState(storeState)
-
-      .run();
-  });
+  it('set authorized saga without text case', () => expectSaga(sendMessageSaga)
+    .withState(storeState)
+    .run());
 
   it('set authorized saga with text case', () => {
     const name = 'name';

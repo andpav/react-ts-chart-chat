@@ -22,6 +22,7 @@ const websocketInit = (url, next, callbackAction) => {
     try {
       parsedData = JSON.parse(event.data);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.log('parse JSON error');
     }
 
@@ -36,6 +37,7 @@ const websocketInit = (url, next, callbackAction) => {
 let chartSocket;
 let chatSocket;
 
+// eslint-disable-next-line
 const socketMiddleWare = store => next => action => {
   switch (action.type) {
     case String(setChartConnection):
@@ -50,8 +52,12 @@ const socketMiddleWare = store => next => action => {
       break;
     case String(sendMessageToSocket):
       if (chatSocket) {
-        // try catch
-        chatSocket.send(JSON.stringify(action.payload));
+        try {
+          chatSocket.send(JSON.stringify(action.payload));
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.log('parse JSON error');
+        }
       }
       break;
     case String(removeConnections):

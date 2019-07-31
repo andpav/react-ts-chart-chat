@@ -9,8 +9,8 @@ describe('Chart reducer', () => {
   });
 
   it('setNewData', () => {
-    const data = { name: '123'};
-    const newState = Object.assign({}, initialState, { data: [ data ]});
+    const data = { name: '123' };
+    const newState = Object.assign({}, initialState, { data: [data] });
 
     expect(chartReducer(initialState, actionList.setNewData(data))).toEqual(newState);
 

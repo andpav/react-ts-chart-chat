@@ -36,7 +36,7 @@ class Chart extends Component {
         <h1>Chart</h1>
         <ChartComponent data={this.props.chartData} />
       </div>
-    )
+    );
   }
 }
 
@@ -45,15 +45,12 @@ const mapStateToProps = state => ({
   chartData: state.chartReducer.data,
 });
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({
-      setChartConnection,
-      changePage: () => push('/login'),
-    },
-    dispatch,
-  );
+const mapDispatchToProps = dispatch => bindActionCreators({
+  setChartConnection,
+  changePage: () => push('/login'),
+}, dispatch);
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
-)(Chart)
+  mapDispatchToProps,
+)(Chart);
