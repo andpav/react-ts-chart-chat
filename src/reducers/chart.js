@@ -1,3 +1,5 @@
+// @flow
+
 import { handleActions } from 'redux-actions';
 import { setNewData, reset } from '../actions/chart';
 

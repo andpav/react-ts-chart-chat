@@ -16,7 +16,6 @@
     "redux-saga": "^1.0.2"
   },
   "devDependencies": {
-    "eslint": "^5.15.3",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-flowtype": "^3.4.2",
     "eslint-plugin-import": "^2.16.0",
@@ -33,7 +32,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "flow": "flow"
   },
   "eslintConfig": {
     "extends": "react-app"

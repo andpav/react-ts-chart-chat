@@ -1,9 +1,16 @@
+// @flow
+
 import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
+import { chartPoint } from '../typing/types';
 
-const Chart = props => (
+type ChartProps = {
+  data: Array<chartPoint>,
+};
+
+const Chart = (props: ChartProps) => (
   <LineChart
     isAnimationActive={false}
     width={500}

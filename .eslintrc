@@ -6,7 +6,7 @@
   "extends": [
     "airbnb",
     "plugin:security/recommended",
-    "plugin:flowtype/recommended",
+    "plugin:flowtype/recommended"
   ],
   "parser": "babel-eslint",
   "env": {

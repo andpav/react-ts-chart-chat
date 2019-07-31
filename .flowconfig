@@ -1,0 +1,24 @@
+[ignore]
+.*/__mocks__/.*
+.*/__tests__/.*
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+# extensions
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.scss
+
+# aliases
+module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
+
+[strict]
+
+[version]
+^0.104.0
