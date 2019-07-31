@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { setNewData, reset } from '../actions/chart';
 
-const initialState = {
+export const initialState = {
   data: [],
 };
 
@@ -19,7 +19,5 @@ export default handleActions(
 
       return { ...state, data };
     },
-    [reset]: (state) => {
-      return initialState;
-    },
+    [reset]: () => initialState,
   }, initialState);

@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import * as actions from '../actions/login';
 
-const initialState = {
+export const initialState = {
   authorized: Boolean(localStorage.getItem('authorized')),
   login: localStorage.getItem('login') || '',
   password: '',

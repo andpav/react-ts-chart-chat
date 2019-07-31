@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
 import { setText, setMessage, setError, reset } from '../actions/chat';
 
-const initialState = {
+export const initialState = {
   messages: [],
   text: '',
   error: false,
