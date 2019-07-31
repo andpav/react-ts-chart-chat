@@ -9,8 +9,8 @@ import {
 } from '../actions/chat';
 
 export function* sendMessageSaga() {
-  const name = yield select(state => state.loginReducer.login);
-  const text = yield select(state => state.chatReducer.text);
+  const name: string = yield select(state => state.loginReducer.login);
+  const text: string = yield select(state => state.chatReducer.text);
 
   if (text) {
     yield put(sendMessageToSocket({ name, text }));

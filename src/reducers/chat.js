@@ -7,8 +7,15 @@ import {
   setError,
   reset,
 } from '../actions/chat';
+import { chatMessage } from '../typing/types';
 
-export const initialState = {
+type stateType = {
+  messages: Array<chatMessage>,
+  text: string,
+  error: boolean,
+}
+
+export const initialState: stateType = {
   messages: [],
   text: '',
   error: false,
@@ -16,9 +23,12 @@ export const initialState = {
 
 export default handleActions(
   {
-    [setText]: (state, { payload }) => ({ ...state, text: payload }),
-    [setMessage]: (state, { payload }) => ({ ...state, messages: [...state.messages, payload] }),
-    [setError]: (state, { payload }) => ({ ...state, error: Boolean(payload) }),
+    [setText]: (state: stateType, { payload }) => ({ ...state, text: payload }),
+    [setMessage]: (state: stateType, { payload }) => ({
+      ...state,
+      messages: [...state.messages, payload],
+    }),
+    [setError]: (state: stateType, { payload }) => ({ ...state, error: Boolean(payload) }),
     [reset]: () => initialState,
   }, initialState,
 );

@@ -59,7 +59,7 @@ class Chat extends Component<{}, ChatProps> {
           ref={el => { this.chat = el; }}
         >
           {this.props.messages.map(message => (
-            <div className="chat__message">
+            <div key={message.text} className="chat__message">
               <span className={`chat__name ${login === message.name ? 'chat__name_right' : 'chat__name_left'}`}>{message.name}</span>
               <span className={`chat__text ${login === message.name ? 'chat__text_right' : 'chat__text_left'}`}>{message.text}</span>
             </div>

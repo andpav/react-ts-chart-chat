@@ -2,18 +2,24 @@
 
 import { handleActions } from 'redux-actions';
 import { setNewData, reset } from '../actions/chart';
+import { chartPoint } from '../typing/types';
 
-export const initialState = {
+type stateType = {
+  data: Array<chartPoint>,
+}
+
+export const initialState: stateType = {
   data: [],
 };
 
+const MAX_CHART_POINTS = 9;
+
 export default handleActions(
   {
-    [setNewData]: (state, { payload }) => {
+    [setNewData]: (state: stateType, { payload }) => {
       const data = [...state.data];
 
-      // replace with slice/splice
-      if (data.length > 9) {
+      if (data.length > MAX_CHART_POINTS) {
         data.shift();
       }
 

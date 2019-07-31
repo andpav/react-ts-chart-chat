@@ -15,10 +15,10 @@ import {
   removeConnections,
 } from '../actions/login';
 
-const websocketInit = (url, next, callbackAction) => {
+const websocketInit = (url: string, next: any, callbackAction: () => void) => {
   const socket = new WebSocket(url);
 
-  socket.onmessage = (event) => {
+  socket.onmessage = (event: MessageEvent) => {
     let parsedData;
 
     try {
@@ -36,8 +36,8 @@ const websocketInit = (url, next, callbackAction) => {
   return socket;
 };
 
-let chartSocket;
-let chatSocket;
+let chartSocket: WebSocket | null;
+let chatSocket: WebSocket | null;
 
 /* it's strange - use String() for redux-action's library action objects,
 * but i have no idea how to fix it without downgrade from redux-actions
@@ -45,7 +45,7 @@ let chatSocket;
  */
 
 // eslint-disable-next-line
-const socketMiddleWare = store => next => action => {
+const socketMiddleWare = (store: any) => (next: any) => (action: () => void) => {
   switch (action.type) {
     case String(setChartConnection):
       if (!chartSocket) {
@@ -77,7 +77,6 @@ const socketMiddleWare = store => next => action => {
         chatSocket.close();
         chatSocket = null;
       }
-
       break;
     default:
       next(action);

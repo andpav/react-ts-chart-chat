@@ -3,7 +3,14 @@
 import { handleActions } from 'redux-actions';
 import * as actions from '../actions/login';
 
-export const initialState = {
+type stateType = {
+  authorized: boolean,
+  login: string,
+  password: string,
+  error: boolean,
+}
+
+export const initialState: stateType = {
   authorized: Boolean(localStorage.getItem('authorized')),
   login: localStorage.getItem('login') || '',
   password: '',
@@ -12,9 +19,9 @@ export const initialState = {
 
 export default handleActions(
   {
-    [actions.setAuthorized]: (state, { payload }) => ({ ...state, authorized: payload }),
-    [actions.setLogin]: (state, { payload }) => ({ ...state, login: payload }),
-    [actions.setPassword]: (state, { payload }) => ({ ...state, password: payload }),
-    [actions.setError]: (state, { payload }) => ({ ...state, error: payload }),
+    [actions.setAuthorized]: (state: stateType, { payload }) => ({ ...state, authorized: payload }),
+    [actions.setLogin]: (state: stateType, { payload }) => ({ ...state, login: payload }),
+    [actions.setPassword]: (state: stateType, { payload }) => ({ ...state, password: payload }),
+    [actions.setError]: (state: stateType, { payload }) => ({ ...state, error: payload }),
   }, initialState,
 );
