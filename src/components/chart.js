@@ -1,15 +1,3 @@
-// import React, { Component } from 'react';
-//
-// export default class extends Component {
-//   render() {
-//     return (
-//       <div>
-//
-//       </div>
-//     )
-//   }
-// };
-
 import React, { Component } from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
