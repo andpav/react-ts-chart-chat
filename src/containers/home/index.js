@@ -2,29 +2,49 @@ import React from 'react'
 import { push } from 'connected-react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { setAuthorized } from '../../actions/login';
+import './home.css';
 
-const Main = props => (
+const Home = props => (
   <div>
-    <h1>Main</h1>
-      <button onClick={() => props.goToChart()}>
+    <h1>Home</h1>
+      <button
+        className="home-page__button"
+        onClick={() => props.goToChart()}
+      >
         Go to chart
       </button>
-      <button onClick={() => props.goToChat()}>
+      <button
+        className="home-page__button"
+        onClick={() => props.goToChat()}
+      >
         Go to chat
+      </button>
+     <button
+        className={`home-page__button ${!props.authorized && 'home-page__button_disabled'}`}
+        disabled={!props.authorized}
+        onClick={() => props.setAuthorized(false)}
+      >
+        Logout
       </button>
   </div>
 );
+
+const mapStateToProps = state => ({
+  authorized: state.loginReducer.authorized,
+});
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
       goToChart: () => push('/chart'),
       goToChat: () => push('/chat'),
+      setAuthorized,
     },
     dispatch,
   );
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
-)(Main);
+)(Home);

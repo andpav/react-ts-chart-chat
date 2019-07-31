@@ -6,10 +6,6 @@ import { push } from 'connected-react-router';
 import ChartComponent from '../../components/chart';
 
 import {
-  setAuthorized,
-} from '../../actions/login';
-
-import {
   setChartConnection,
 } from '../../actions/chart';
 
@@ -38,16 +34,11 @@ class Chart extends Component {
     return (
       <div>
         <h1>Chart</h1>
-
         <ChartComponent data={this.props.chartData} />
-
-        <button
-          onClick={() => this.props.setAuthorized(false)}
-        >Logout</button>
       </div>
     )
   }
-};
+}
 
 const mapStateToProps = state => ({
   authorized: state.loginReducer.authorized,
@@ -56,7 +47,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
-      setAuthorized,
       setChartConnection,
       changePage: () => push('/login'),
     },

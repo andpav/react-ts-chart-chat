@@ -5,13 +5,15 @@ import Chat from '../chat'
 import Login from '../login'
 import Home from '../home'
 
+import './app.css';
+
 const App = () => (
   <div>
     <header>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/chart">Chart</Link>
-      <Link to="/chat">Chat</Link>
+      <Link className="link" to="/">Home</Link>
+      <Link className="link" to="/login">Login</Link>
+      <Link className="link" to="/chart">Chart</Link>
+      <Link className="link" to="/chat">Chat</Link>
     </header>
 
     <main>

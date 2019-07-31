@@ -13,12 +13,14 @@ import {
   sendMessage,
   sendMessageToSocket,
   reset as resetChat,
+  setText,
 } from '../actions/chat';
 
 import {
   reset as resetChart,
 } from '../actions/chart';
 
+// move to different sagas
 export function* setAuthorizedSaga({ payload }) {
   if (payload) {
     yield localStorage.setItem('authorized', String(payload));
@@ -63,7 +65,10 @@ export function* sendMessageSaga() {
   const name = yield select(state => state.loginReducer.login);
   const text = yield select(state => state.chatReducer.text);
 
-  yield put(sendMessageToSocket({ name, text }));
+  if (text) {
+    yield put(sendMessageToSocket({ name, text }));
+    yield put(setText(''));
+  }
 }
 
 export function* watchChat() {

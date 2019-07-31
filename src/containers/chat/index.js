@@ -4,10 +4,6 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 
 import {
-  setAuthorized,
-} from '../../actions/login';
-
-import {
   setText,
   sendMessage,
   setChatConnection,
@@ -81,16 +77,10 @@ class Chat extends Component {
           >Send</button>
           {this.props.error && <p className="login-page__error">Something went wrong</p>}
         </div>
-
-
-        <button
-          className="chat-page__button"
-          onClick={() => this.props.setAuthorized(false)}
-        >Logout</button>
       </div>
     )
   }
-};
+}
 
 const mapStateToProps = state => ({
   authorized: state.loginReducer.authorized,
@@ -102,7 +92,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
-      setAuthorized,
       sendMessage,
       setText,
       setChatConnection,
