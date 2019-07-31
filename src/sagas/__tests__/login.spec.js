@@ -1,8 +1,7 @@
 import { setAuthorizedSaga, loginSaga } from '../login';
-// import * as matchers from 'redux-saga-test-plan/matchers';
 import { expectSaga } from 'redux-saga-test-plan';
 
-import { removeConnections } from '../../actions/login';
+import { removeConnections, setError } from '../../actions/login';
 import { reset as resetChat } from '../../actions/chat';
 import { reset as resetChart } from '../../actions/chart';
 
@@ -39,6 +38,24 @@ describe('Login sagas', () => {
       .put(removeConnections())
       .put(resetChat())
       .put(resetChart())
+
+      .run();
+  });
+
+  it('login saga success case', () => {
+    return expectSaga(loginSaga)
+      .withState(storeState)
+
+      // TODO: test with mock axios.post
+
+      .run();
+  });
+
+  it('login saga error case', () => {
+    return expectSaga(loginSaga)
+      .withState(storeState)
+
+      .put(setError(true))
 
       .run();
   });

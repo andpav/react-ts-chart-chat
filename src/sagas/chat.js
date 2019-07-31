@@ -6,7 +6,7 @@ import {
   setText,
 } from '../actions/chat';
 
-function* sendMessageSaga() {
+export function* sendMessageSaga() {
   const name = yield select(state => state.loginReducer.login);
   const text = yield select(state => state.chatReducer.text);
 
