@@ -6,3 +6,8 @@ export type chartPoint = {
   pv: number,
   amt: number,
 };
+
+export type chatMessage = {
+  name: string,
+  text: string,
+};

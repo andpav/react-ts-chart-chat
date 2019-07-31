@@ -1,7 +1,6 @@
 // @flow
 
 import React, { Component } from 'react';
-import { push } from 'connected-react-router';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import {
@@ -13,43 +12,42 @@ import {
 
 import './login.css';
 
-class Login extends Component {
-  componentDidMount() {
-    if (this.props.authorized) {
-      this.props.changePage();
-    }
-  }
+type LoginProps = {
+  authorized: boolean,
+  login: string,
+  password: string,
+  error: boolean,
+  setLogin: (string) => void,
+  setPassword: (string) => void,
+  setError: (boolean) => void,
+  signIn: () => void,
+}
 
-  componentDidUpdate() {
-    if (this.props.authorized) {
-      this.props.changePage();
-    }
-  }
-
-  setLogin = (event) => {
+class Login extends Component<{}, LoginProps> {
+  setLogin = (event: SyntheticInputEvent) => {
     this.props.setLogin(event.target.value);
     this.props.setError(false);
   };
 
-  setPassword = (event) => {
+  setPassword = (event: SyntheticInputEvent) => {
     this.props.setPassword(event.target.value);
     this.props.setError(false);
   };
 
-  render() {
+  render(): React$Element<*> {
     return (
       <div className="login-page">
         <h1>Login</h1>
         <input
           className="login-page__input"
           placeholder="username"
-          onChange={e => this.setLogin(e)}
+          onChange={(e: SyntheticInputEvent) => this.setLogin(e)}
           value={this.props.login}
         />
         <input
           className="login-page__input"
           placeholder="password"
-          onChange={e => this.setPassword(e)}
+          onChange={(e: SyntheticInputEvent) => this.setPassword(e)}
           type="password"
           value={this.props.password}
         />
@@ -81,7 +79,6 @@ const mapDispatchToProps = dispatch => bindActionCreators(
     setLogin,
     setPassword,
     setError,
-    changePage: () => push('/chart'),
   },
   dispatch,
 );

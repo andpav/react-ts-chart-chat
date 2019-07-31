@@ -8,7 +8,14 @@ import { setAuthorized } from '../../actions/login';
 
 import './home.css';
 
-const Home = props => (
+type HomeProps = {
+  authorized: boolean,
+  goToChart: () => any,
+  goToChat: () => any,
+  setAuthorized: (boolean) => void,
+}
+
+const Home = (props: HomeProps): React$Element<*> => (
   <div>
     <h1>Home</h1>
       <button

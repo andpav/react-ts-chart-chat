@@ -12,27 +12,41 @@ import {
   setError,
 } from '../../actions/chat';
 
+import { chatMessage } from '../../typing/types';
+
 import './chat.css';
 
-class Chat extends Component {
-  componentDidMount() {
+type ChatProps = {
+  authorized: boolean,
+  login: string,
+  messages: Array<chatMessage>,
+  text: string,
+  error: boolean,
+  sendMessage: () => void,
+  setText: (string) => void,
+  setChatConnection: () => void,
+  setError: (boolean) => void,
+}
+
+class Chat extends Component<{}, ChatProps> {
+  componentDidMount(): void {
     this.props.setChatConnection();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(): void {
     this.scrollToBottom();
   }
 
-  scrollToBottom = () => {
+  scrollToBottom = (): void => {
     this.chat.scrollTop = this.chat.scrollHeight;
   };
 
-  setText = (event) => {
+  setText = (event: SyntheticInputEvent) => {
     this.props.setText(event.target.value);
     this.props.setError(false);
   };
 
-  render() {
+  render(): React$Element<*> {
     const { login } = this.props;
 
     return (

@@ -7,16 +7,23 @@ import { push } from 'connected-react-router';
 
 import ChartComponent from '../../components/chart';
 
-import {
-  setChartConnection,
-} from '../../actions/chart';
+import { setChartConnection } from '../../actions/chart';
 
-class Chart extends Component {
-  componentDidMount() {
+import { chartPoint } from '../../typing/types';
+
+type ChartProps = {
+  authorized: boolean,
+  chartData: Array<chartPoint>,
+  setChartConnection: () => void,
+  changePage: () => void,
+}
+
+class Chart extends Component<{}, ChartProps> {
+  componentDidMount(): void {
     this.props.setChartConnection();
   }
 
-  render() {
+  render(): React$Element<*> {
     return (
       <div>
         <h1>Chart</h1>
