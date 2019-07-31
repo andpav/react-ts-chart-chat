@@ -4,7 +4,6 @@ import axios from 'axios';
 import {
   signIn,
   setAuthorized,
-  setLogin,
   setPassword,
   setError,
   removeConnections,
@@ -48,7 +47,6 @@ export function* loginSaga() {
     );
 
     yield put(setAuthorized(true));
-    yield put(setLogin(''));
     yield localStorage.setItem('login', login);
     yield put(setPassword(''));
   } catch(error) {

@@ -1,0 +1,30 @@
+.login-page {
+  display: flex;
+  flex-direction: column;
+  max-width: 270px;
+}
+
+.login-page__input {
+  padding: 6px 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.login-page__button-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.login-page__button {
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 100px;
+  height: 35px;
+}
+
+.login-page__error {
+  color: red;
+  font-size: 12px;
+  margin: 0 8px;
+}

@@ -4,7 +4,7 @@ import { setText, setMessage, setError, reset } from '../actions/chat';
 const initialState = {
   messages: [],
   text: '',
-  error: '',
+  error: false,
 };
 
 export default handleActions(
@@ -18,7 +18,5 @@ export default handleActions(
     [setError]: (state, { payload }) => {
       return { ...state, error: Boolean(payload)};
     },
-    [reset]: (state) => {
-      return initialState;
-    },
+    [reset]: () => initialState,
   }, initialState);
