@@ -6,6 +6,8 @@ import Chart from '../chart';
 import Chat from '../chat';
 import Login from '../login';
 import Home from '../home';
+import SignInRequired from '../SignInRequired';
+import SignOutRequired from '../SignOutRequired';
 
 import './app.css';
 
@@ -20,9 +22,9 @@ const App = () => (
 
     <main>
       <Route exact path="/" component={Home} />
-      <Route exact path="/login" component={Login} />
-      <Route exact path="/chart" component={Chart} />
-      <Route exact path="/chat" component={Chat} />
+      <Route exact path="/login" component={SignOutRequired(Login)} />
+      <Route exact path="/chart" component={SignInRequired(Chart)} />
+      <Route exact path="/chat" component={SignInRequired(Chat)} />
     </main>
   </div>
 );

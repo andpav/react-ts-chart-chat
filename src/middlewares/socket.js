@@ -39,6 +39,11 @@ const websocketInit = (url, next, callbackAction) => {
 let chartSocket;
 let chatSocket;
 
+/* it's strange - use String() for redux-action's library action objects,
+* but i have no idea how to fix it without downgrade from redux-actions
+* i should to refactor this middleware soon
+ */
+
 // eslint-disable-next-line
 const socketMiddleWare = store => next => action => {
   switch (action.type) {

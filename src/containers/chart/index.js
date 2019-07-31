@@ -13,23 +13,7 @@ import {
 
 class Chart extends Component {
   componentDidMount() {
-    // move to saga
-
-    if (!this.props.authorized) {
-      this.props.changePage();
-
-      return;
-    }
-
     this.props.setChartConnection();
-  }
-
-  componentDidUpdate() {
-    // move to saga
-
-    if (!this.props.authorized) {
-      this.props.changePage();
-    }
   }
 
   render() {

@@ -16,24 +16,10 @@ import './chat.css';
 
 class Chat extends Component {
   componentDidMount() {
-    // move to saga
-
-    if (!this.props.authorized) {
-      this.props.changePage();
-
-      return;
-    }
-
     this.props.setChatConnection();
   }
 
   componentDidUpdate() {
-    // move to saga
-
-    if (!this.props.authorized) {
-      this.props.changePage();
-    }
-
     this.scrollToBottom();
   }
 
