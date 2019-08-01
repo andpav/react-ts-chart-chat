@@ -1,0 +1,30 @@
+.chat-top {
+  display: flex;
+  flex-direction: column;
+  height: 320px;
+  overflow: scroll;
+}
+
+.chat-top__message {
+  margin-top: 8px;
+}
+
+.chat-top__name {
+ margin: 0 9px;
+}
+
+.chat-top__text {
+  padding: 3px 6px;
+}
+
+.chat-top__name_left {}
+
+.chat-top__name_right {
+  text-align: right;
+}
+
+.chat-top__text_left {}
+
+.chat-top__text_right {
+  text-align: right;
+}

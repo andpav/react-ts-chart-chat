@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 
-import Button from '../../components/button';
-import Input from '../../components/input';
+import ChatTop from '../../components/chatTop';
+import ChatBottom from '../../components/chatBottom';
 import keys from '../../constants/keys';
 import { chatMessage } from '../../typing/types';
 
@@ -16,7 +16,6 @@ import {
   setChatConnection,
   setError,
 } from '../../actions/chat';
-
 
 import './chat.css';
 
@@ -37,14 +36,6 @@ class Chat extends Component<{}, ChatProps> {
     this.props.setChatConnection();
   }
 
-  componentDidUpdate(): void {
-    this.scrollToBottom();
-  }
-
-  scrollToBottom = (): void => {
-    this.chat.scrollTop = this.chat.scrollHeight;
-  };
-
   setText = (event: SyntheticInputEvent) => {
     this.props.setText(event.target.value);
     this.props.setError(false);
@@ -57,36 +48,21 @@ class Chat extends Component<{}, ChatProps> {
   };
 
   render(): React$Element<*> {
-    const { login } = this.props;
-
     return (
       <div className="chat-page">
         <h1>Chat</h1>
 
-        <div
-          className="chat"
-          // eslint-disable-next-line arrow-parens
-          ref={el => { this.chat = el; }}
-        >
-          {this.props.messages.map(message => (
-            <div key={message.text} className="chat__message">
-              <div className={`chat__name ${login === message.name ? 'chat__name_right' : 'chat__name_left'}`}>{message.name}</div>
-              <div className={`chat__text ${login === message.name ? 'chat__text_right' : 'chat__text_left'}`}>{message.text}</div>
-            </div>
-          ))}
-        </div>
-
-        <p>Your message:</p>
-        <Input
-          onChange={this.setText}
-          onKeyDown={this.onKeyDown}
-          value={this.props.text}
-          autoFocus
+        <ChatTop
+          messages={this.props.messages}
+          login={this.props.login}
         />
-        <Button
-          text="send"
-          onClick={this.props.sendMessage}
+
+        <ChatBottom
+          text={this.props.text}
           error={this.props.error}
+          sendMessage={this.props.sendMessage}
+          setText={this.setText}
+          onKeyDown={this.onKeyDown}
         />
       </div>
     );

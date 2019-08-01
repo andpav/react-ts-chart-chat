@@ -4,13 +4,13 @@ import React from 'react';
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
-import { chartPoint } from '../typing/types';
+import { chartPoint } from '../../typing/types';
 
 type ChartProps = {
   data: Array<chartPoint>,
 };
 
-const Chart = (props: ChartProps) => (
+const Index = (props: ChartProps) => (
   <LineChart
     isAnimationActive={false}
     width={500}
@@ -31,4 +31,4 @@ const Chart = (props: ChartProps) => (
   </LineChart>
 );
 
-export default Chart;
+export default Index;
