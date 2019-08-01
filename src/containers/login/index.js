@@ -9,6 +9,7 @@ import {
   setPassword,
   setError,
 } from '../../actions/login';
+import keys from '../../constants/keys';
 
 import './login.css';
 
@@ -34,15 +35,22 @@ class Login extends Component<{}, LoginProps> {
     this.props.setError(false);
   };
 
+  onKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === keys.Enter) {
+      this.props.signIn();
+    }
+  };
+
   render(): React$Element<*> {
     return (
-      <div className="login-page">
+      <div className="login-page" onKeyDown={this.onKeyDown}>
         <h1>Login</h1>
         <input
           className="login-page__input"
           placeholder="username"
           onChange={(e: SyntheticInputEvent) => this.setLogin(e)}
           value={this.props.login}
+          autoFocus
         />
         <input
           className="login-page__input"

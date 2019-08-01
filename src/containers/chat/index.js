@@ -12,6 +12,8 @@ import {
   setError,
 } from '../../actions/chat';
 
+import keys from '../../constants/keys';
+
 import { chatMessage } from '../../typing/types';
 
 import './chat.css';
@@ -46,6 +48,12 @@ class Chat extends Component<{}, ChatProps> {
     this.props.setError(false);
   };
 
+  onKeyDown = (event: KeyboardEvent): void => {
+    if (event.key === keys.Enter) {
+      this.props.sendMessage();
+    }
+  };
+
   render(): React$Element<*> {
     const { login } = this.props;
 
@@ -71,6 +79,8 @@ class Chat extends Component<{}, ChatProps> {
           className="chat-page__input"
           onChange={e => this.setText(e)}
           value={this.props.text}
+          onKeyDown={this.onKeyDown}
+          autoFocus
         />
 
         <div className="chat-page__button-wrapper">
