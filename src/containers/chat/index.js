@@ -60,8 +60,8 @@ class Chat extends Component<{}, ChatProps> {
         >
           {this.props.messages.map(message => (
             <div key={message.text} className="chat__message">
-              <span className={`chat__name ${login === message.name ? 'chat__name_right' : 'chat__name_left'}`}>{message.name}</span>
-              <span className={`chat__text ${login === message.name ? 'chat__text_right' : 'chat__text_left'}`}>{message.text}</span>
+              <div className={`chat__name ${login === message.name ? 'chat__name_right' : 'chat__name_left'}`}>{message.name}</div>
+              <div className={`chat__text ${login === message.name ? 'chat__text_right' : 'chat__text_left'}`}>{message.text}</div>
             </div>
           ))}
         </div>
