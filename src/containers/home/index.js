@@ -19,22 +19,25 @@ type HomeProps = {
 const Home = (props: HomeProps): React$Element<*> => (
   <div className="home-page">
     <h1>Home</h1>
-      <Button
-        text="Go to chart"
-        className="home-page__button"
-        onClick={props.goToChart}
-      />
-      <Button
-        text="Go to chat"
-        className="home-page__button"
-        onClick={props.goToChat}
-      />
-      <Button
-        text="Logout"
-        className="home-page__button"
-        disabled={!props.authorized}
-        onClick={props.setAuthorized}
-      />
+
+    <p>You can use for login: 'user', 'user2' with password '12345'</p>
+
+    <Button
+      text="Go to chart"
+      className="home-page__button"
+      onClick={props.goToChart}
+    />
+    <Button
+      text="Go to chat"
+      className="home-page__button"
+      onClick={props.goToChat}
+    />
+    <Button
+      text="Logout"
+      className="home-page__button"
+      disabled={!props.authorized}
+      onClick={props.setAuthorized}
+    />
   </div>
 );
 
