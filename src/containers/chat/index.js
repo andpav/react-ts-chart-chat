@@ -6,14 +6,17 @@ import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 
 import Button from '../../components/button';
+import Input from '../../components/input';
+import keys from '../../constants/keys';
+import { chatMessage } from '../../typing/types';
+
 import {
   setText,
   sendMessage,
   setChatConnection,
   setError,
 } from '../../actions/chat';
-import keys from '../../constants/keys';
-import { chatMessage } from '../../typing/types';
+
 
 import './chat.css';
 
@@ -74,14 +77,12 @@ class Chat extends Component<{}, ChatProps> {
         </div>
 
         <p>Your message:</p>
-        <input
-          className="chat-page__input"
-          onChange={e => this.setText(e)}
-          value={this.props.text}
+        <Input
+          onChange={this.setText}
           onKeyDown={this.onKeyDown}
+          value={this.props.text}
           autoFocus
         />
-
         <Button
           text="send"
           onClick={this.props.sendMessage}

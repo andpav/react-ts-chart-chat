@@ -22,18 +22,18 @@ const Home = (props: HomeProps): React$Element<*> => (
       <Button
         text="Go to chart"
         className="home-page__button"
-        onClick={() => props.goToChart()}
+        onClick={props.goToChart}
       />
       <Button
         text="Go to chat"
         className="home-page__button"
-        onClick={() => props.goToChat()}
+        onClick={props.goToChat}
       />
       <Button
         text="Logout"
         className="home-page__button"
         disabled={!props.authorized}
-        onClick={props.setAuthorized(false)}
+        onClick={props.setAuthorized}
       />
   </div>
 );

@@ -11,6 +11,7 @@ import {
 } from '../../actions/login';
 import keys from '../../constants/keys';
 import Button from '../../components/button';
+import Input from '../../components/input';
 
 import './login.css';
 
@@ -46,17 +47,15 @@ class Login extends Component<{}, LoginProps> {
     return (
       <div className="login-page" onKeyDown={this.onKeyDown}>
         <h1>Login</h1>
-        <input
-          className="login-page__input"
+        <Input
           placeholder="username"
-          onChange={(e: SyntheticInputEvent) => this.setLogin(e)}
+          onChange={this.setLogin}
           value={this.props.login}
           autoFocus
         />
-        <input
-          className="login-page__input"
+        <Input
           placeholder="password"
-          onChange={(e: SyntheticInputEvent) => this.setPassword(e)}
+          onChange={this.setPassword}
           type="password"
           value={this.props.password}
         />
