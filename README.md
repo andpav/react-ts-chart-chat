@@ -3,6 +3,7 @@ Chat & Chart app (react + redux + react-router + flow + golang server)
 ## Clone
 ```bash
 git clone https://github.com/andpav/react-chart-chat
+cd react-chart-chat
 ```
 
 ## Install Dependencies
@@ -31,3 +32,7 @@ go build
 
 ```
 and go to localhost:3000
+
+
+## Note
+You should to use login 'user' or 'user2' with password '12345'
