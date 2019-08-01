@@ -1,0 +1,25 @@
+.button {
+}
+
+.button__wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.button__button {
+  padding: 8px 12px;
+  font-size: 14px;
+  width: 100px;
+  height: 35px;
+}
+
+.button__button_disabled {
+  opacity: 0.5;
+}
+
+.button__error {
+  color: red;
+  font-size: 12px;
+  margin: 0 8px;
+}

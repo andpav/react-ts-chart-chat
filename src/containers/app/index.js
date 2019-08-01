@@ -11,7 +11,7 @@ import SignOutRequired from '../SignOutRequired';
 
 import './app.css';
 
-const App = () => (
+const App = (): React$Element<*> => (
   <div>
     <header>
       <Link className="link" to="/">Home</Link>

@@ -1,14 +1,5 @@
-.home-page {
-}
+.home-page {}
 
 .home-page__button {
-  margin: 6px 12px;
-  padding: 8px 12px;
-  font-size: 14px;
-  width: 100px;
-  height: 35px;
-}
-
-.home-page__button_disabled {
-  opacity: 0.5;
+  margin-top: 16px;
 }

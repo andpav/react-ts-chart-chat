@@ -10,6 +10,7 @@ import {
   setError,
 } from '../../actions/login';
 import keys from '../../constants/keys';
+import Button from '../../components/button';
 
 import './login.css';
 
@@ -59,16 +60,11 @@ class Login extends Component<{}, LoginProps> {
           type="password"
           value={this.props.password}
         />
-        <div className="login-page__button-wrapper">
-          <button
-            type="button"
-            className="login-page__button"
-            onClick={() => this.props.signIn()}
-          >
-            Login
-          </button>
-          {this.props.error && <p className="login-page__error">something went wrong</p>}
-        </div>
+        <Button
+          text="submit"
+          onClick={this.props.signIn}
+          error={this.props.error}
+        />
       </div>
     );
   }

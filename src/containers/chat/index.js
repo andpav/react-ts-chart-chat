@@ -5,15 +5,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'connected-react-router';
 
+import Button from '../../components/button';
 import {
   setText,
   sendMessage,
   setChatConnection,
   setError,
 } from '../../actions/chat';
-
 import keys from '../../constants/keys';
-
 import { chatMessage } from '../../typing/types';
 
 import './chat.css';
@@ -83,16 +82,11 @@ class Chat extends Component<{}, ChatProps> {
           autoFocus
         />
 
-        <div className="chat-page__button-wrapper">
-          <button
-            type="button"
-            className="chat-page__button"
-            onClick={() => this.props.sendMessage()}
-          >
-            Send
-          </button>
-          {this.props.error && <p className="login-page__error">Something went wrong</p>}
-        </div>
+        <Button
+          text="send"
+          onClick={this.props.sendMessage}
+          error={this.props.error}
+        />
       </div>
     );
   }

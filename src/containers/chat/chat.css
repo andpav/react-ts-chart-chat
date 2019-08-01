@@ -10,25 +10,6 @@
   margin-bottom: 16px;
 }
 
-.chat-page__button-wrapper {
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.chat-page__button {
-  padding: 8px 12px;
-  font-size: 14px;
-  width: 100px;
-  height: 35px;
-}
-
-.chat-page__error {
-  color: red;
-  font-size: 12px;
-  margin: 0 8px;
-}
-
 .chat {
   display: flex;
   flex-direction: column;
