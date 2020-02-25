@@ -1,14 +1,14 @@
 {
   "plugins": [
     "security",
-    "flowtype"
+    "@typescript-eslint/eslint-plugin"
   ],
   "extends": [
     "airbnb",
     "plugin:security/recommended",
-    "plugin:flowtype/recommended"
+    "plugin:@typescript-eslint/recommended"
   ],
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
     "jest": true
@@ -20,8 +20,7 @@
       1,
       {
         "extensions": [
-          ".js",
-          ".jsx"
+          ".js", ".ts", ".tsx"
         ]
       }
     ],
@@ -55,9 +54,5 @@
     ],
     "security/detect-object-injection": "off"
   },
-  "settings": {
-    "flowtype": {
-      "onlyFilesWithFlowAnnotation": true
-    }
-  }
+  "settings": {}
 }

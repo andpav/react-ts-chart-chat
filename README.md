@@ -1,4 +1,4 @@
-Chat & Chart app (react + redux + react-router + flow + golang server)
+Chat & Chart app (react + redux + react-router + typescript + golang server)
 
 ## Clone
 ```bash
